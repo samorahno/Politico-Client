@@ -5,25 +5,24 @@ import { Link } from 'react-router-dom';
 import '../../styles/landing.css';
 
 class Landing extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             showSignupModal: false,
             showLoginModal: false
         };
     }
-    isSignupModal() {
+    isSignupModal () {
         this.setState({
             showSignupModal: !this.state.showSignupModal
         });
-    };
-    isLoginModal(e) {
-        
+    }
+    isLoginModal (e) {
         this.setState({
             showLoginModal: !this.state.showLoginModal
-        })
-    };
-    render() {
+        });
+    }
+    render () {
         return (
             <div>
                 <div id="showcase" className="grid">
@@ -42,7 +41,7 @@ class Landing extends Component {
                         <center><b>About Politico</b></center> <br />
                         Politico is a platform that enables citizens give their mandate to politicians running different
                         government offices while building trust in the process through transparency.
-        </span>
+                    </span>
 
                     </div>
 
@@ -59,12 +58,12 @@ class Landing extends Component {
                             <div className="step-icon8">1</div>
 
                         </div>
-                        <div className="indicator-line8"></div>
+                        <div className="indicator-line8" />
                         <div className="step8 step2">
                             <div className="step-icon8">2</div>
 
                         </div>
-                        <div className="indicator-line8"></div>
+                        <div className="indicator-line8" />
                         <div className="step8 step3">
                             <div className="step-icon8">3</div>
 
@@ -73,22 +72,21 @@ class Landing extends Component {
                 </div>
 
 
-
                 <div className="steps mt">
                     <div className="column step">
                         <p className="section-text">
                             Create an account and login as a user to have access to view voting parameters.
-        </p>
+                        </p>
                     </div>
                     <div className="column step">
                         <p className="section-text">
                             Vote any political party of your choice by selecting the party and your favorite candidate
-        </p>
+                        </p>
                     </div>
                     <div className="column step">
                         <p className="section-text">
                             You can view the results of the election just by clicking the view result button.
-        </p>
+                        </p>
 
                         <Login showModal={this.state.showLoginModal} />
                         <Signup showModal={this.state.showSignupModal} />
@@ -97,8 +95,6 @@ class Landing extends Component {
             </div>
         );
     }
-
-
 }
 
 export default Landing;
