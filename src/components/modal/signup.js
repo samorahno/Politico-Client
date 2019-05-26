@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { signupUser } from '../../actions';
 import '../../styles/landing.css';
 
-const baseUrlSignup = 'https://samson-politico.herokuapp.com/api/v1/';
+// const baseUrlSignup = 'https://samson-politico.herokuapp.com/api/v1/';
 class Signup extends Component {
     constructor (props) {
         super(props);
@@ -32,7 +33,7 @@ class Signup extends Component {
     }
 
 
-    onSubmit (e) {
+    async onSubmit (e) {
         e.preventDefault();
         this.setState({
             error: ''
@@ -46,12 +47,9 @@ class Signup extends Component {
             confirmPassword: this.state.password_confirm
 
         };
-
-        axios.post(`${baseUrlSignup}auth/signup`, newUser)
-            .then(res => () => {
-                console.log(res.data);
-            })
-            .catch(err => this.setState({ error: err.response.data }));
+        const { signup } = this.props;
+        const res = await signup(newUser);
+        console.log(res);
     }
     render () {
         const { error } = this.state.error;
@@ -73,26 +71,70 @@ class Signup extends Component {
                             {error && (<div className="error-msg">{error}</div>)}
                             <div className="input-group">
                                 <label>First Name</label>
-                                <input type="text" name="firstName" placeholder="First Name" id="firstname" value={this.state.firstName} onChange={this.onChange}/>
+                                <input
+                                    type="text"
+                                    name="firstName"
+                                    placeholder="First Name"
+                                    id="firstname"
+                                    value={this.state.firstName}
+                                    onChange={this.onChange}
+                                />
 
                             </div>
                             <div className="input-group">
                                 <label>Last Name</label>
-                                <input type="text" name="lastName" placeholder="Last Name" id="lastname" value={this.state.lastName} onChange={this.onChange}/>
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    placeholder="Last Name"
+                                    id="lastname"
+                                    value={this.state.lastName}
+                                    onChange={this.onChange}
+                                />
 
                             </div>
                             <div className="input-group">
                                 <label>E-mail</label>
-                                <input type="email" name="email" placeholder="E-mail" id="signupemail" value={this.state.email} onChange={this.onChange}/>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="E-mail"
+                                    id="signupemail"
+                                    value={this.state.email}
+                                    onChange={this.onChange}
+                                />
                             </div>
                             <div className="input-group">
                                 <label>Phone Number</label>
-                                <input type="number" name="phoneNumber" placeholder="Phone Number" id="phonenumber" value={this.state.phoneNumber} onChange={this.onChange}/>
+                                <input
+                                    type="number"
+                                    name="phoneNumber"
+                                    placeholder="Phone Number"
+                                    id="phonenumber"
+                                    value={this.state.phoneNumber}
+                                    onChange={this.onChange}
+                                />
                             </div>
                             <label style={{ width: '33%' }}>Password / </label><label style={{ width: '33%' }}>Confirm Password</label>
                             <div className="input-group">
-                                <input type="password" name="password" placeholder="Password" id="signuppassword" style={{ width: '33%' }} value={this.state.password} onChange={this.onChange}/>
-                                <input type="password" name="password_confirm" placeholder="Confirm Password" id="confirmsignuppassword" style={{ width: '33%' }} value={this.state.password_confirm} onChange={this.onChange}/>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    id="signuppassword"
+                                    style={{ width: '33%' }}
+                                    value={this.state.password}
+                                    onChange={this.onChange}
+                                />
+                                <input
+                                    type="password"
+                                    name="password_confirm"
+                                    placeholder="Confirm Password"
+                                    id="confirmsignuppassword"
+                                    style={{ width: '33%' }}
+                                    value={this.state.password_confirm}
+                                    onChange={this.onChange}
+                                />
                             </div>
                             <div className="input-group">
                                 <button type="submit" name="submit" className="btn" id="signupbtn">Register</button>
@@ -107,4 +149,8 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+const mapDispatchToProps = {
+    signup: signupUser
+};
+
+export default connect(null, mapDispatchToProps)(Signup);
