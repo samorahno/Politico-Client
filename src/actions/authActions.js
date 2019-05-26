@@ -12,15 +12,17 @@ export const authFailure = (payload) => ({
     payload
 });
 
-export const signupSuccess = (payload = {}) => ({
+export const signupSuccess = (payload = {}, message = '') => ({
     type: AUTH_SIGNUP,
-    payload
+    payload,
+    message
 });
 
 export const loginUser = (data) => async (dispatch) => {
     try {
         const response = await axios.post('/auth/login', data);
-        return dispatch(loginSucess(response.data.data[0].user, response.data.data[0].message));
+        const { user, message } = response.data.data[0];
+        return dispatch(loginSucess(user, message));
     } catch (error) {
         return dispatch(authFailure(error.response.data));
     }
@@ -29,9 +31,11 @@ export const loginUser = (data) => async (dispatch) => {
 export const signupUser = (data) => async (dispatch) => {
     try {
         const response = await axios.post('/auth/signup', data);
-        return dispatch(signupSuccess(response));
+        const { message } = response.data;
+        const { user } = response.data.data[0];
+        return dispatch(signupSuccess(user, message));
     } catch (error) {
+        console.log(error.response.data);
         return dispatch(authFailure(error.response.data));
     }
 };
-

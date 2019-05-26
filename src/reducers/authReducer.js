@@ -12,7 +12,9 @@ export const authReducer = (state = initialState, action) => {
             };
         case AUTH_SIGNUP:
             return {
-
+                ...state,
+                ...action.payload,
+                message: action.message
             };
         case AUTH_FAILURE:
             return {
