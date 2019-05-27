@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions';
-import '../../styles/landing.css';
+import '../../styles/landing.scss';
 
 class Login extends Component {
     constructor (props) {
