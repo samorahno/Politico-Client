@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 
 if (process.env.NODE_ENV === 'production') {
-    const buildPath = path.resolve(__dirname, './build');
+    const buildPath = path.resolve(__dirname, './dist');
     const filePath = path.join(buildPath, 'index.html');
 
     app.use(express.static(buildPath));
