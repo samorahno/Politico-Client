@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signupUser } from '../../actions';
-import '../../styles/landing.css';
+import '../../styles/landing.scss';
 
 // const baseUrlSignup = 'https://samson-politico.herokuapp.com/api/v1/';
 class Signup extends Component {
