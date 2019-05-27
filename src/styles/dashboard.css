@@ -83,6 +83,11 @@ header a.minimize_button {
 	background-color: gray;
 }
 
+.side-nav ul a.active{
+	background-color: gray;
+	padding: 10px 10px;
+}
+
 .side-nav ul li span i {
 	text-decoration: none;
 	color: black;
@@ -495,4 +500,8 @@ button {
     100%{
         transform: rotate(360deg);
     }
+}
+
+.toast-message {
+  text-align: center;
 }

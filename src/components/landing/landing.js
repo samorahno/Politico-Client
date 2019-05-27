@@ -27,21 +27,23 @@ class Landing extends Component {
     render () {
         return (
             <div>
-                <Header />
-                <div className="Landing">
-                    <div id="showcase" className="grid">
+                <div className="Landing" style={{ backgroundColor: 'white' }}>
+                    <Header />
 
-                        <h1 className="white">Welcome to Politico</h1>
-                        <p className="header-line2">...your vote is your right...</p>
-                        <Link to="#" className="btn2" id="myBtn" onClick={this.isLoginModal.bind(this)}>Login</Link>
+                    <div id="showcasel" className="gridl">
+
+                        <h1 className="whitel">Welcome to Politico</h1>
+                        <p className="header-line2l">...your vote is your right...</p>
+                        <Link to="#" className="btnlanding" id="myBtn" onClick={this.isLoginModal.bind(this)}>Login</Link>
+                        {"  "}
                         <Link
                             to="#"
-                            className="btn2"
+                            className="btnlanding"
                             id="myBtn2"
                             onClick={this.isSignupModal.bind(this)}
                         >Sign Up</Link>
 
-                        <div className="headline_intro"> <span>
+                        <div className="headline_introl"> <span>
                             <center><b>About Politico</b></center> <br />
                         Politico is a platform that enables citizens give their mandate to politicians running different
                         government offices while building trust in the process through transparency.
@@ -51,44 +53,44 @@ class Landing extends Component {
 
                     </div>
 
-                    <div className="container8">
+                    <div className="container8l" style={{ backgroundColor: 'white' }}>
                         <span style={{ width: '100%' }}>
                             <p style={{ width: '100%' }}>The simple steps to
             follow is shown below:</p>
                         </span>
-                        <section className="step-indicator8">
+                        <section className="step-indicator8l">
 
-                            <div className="step8 step1">
-                                <div className="step-icon8">1</div>
-
-                            </div>
-                            <div className="indicator-line8" />
-                            <div className="step8 step2">
-                                <div className="step-icon8">2</div>
+                            <div className="step8l step1l">
+                                <div className="step-icon8l">1</div>
 
                             </div>
-                            <div className="indicator-line8" />
-                            <div className="step8 step3">
-                                <div className="step-icon8">3</div>
+                            <div className="indicator-line8l" />
+                            <div className="step8l step2l">
+                                <div className="step-icon8l">2</div>
+
+                            </div>
+                            <div className="indicator-line8l" />
+                            <div className="step8l step3l">
+                                <div className="step-icon8l">3</div>
 
                             </div>
                         </section>
                     </div>
 
 
-                    <div className="steps mt">
-                        <div className="column step">
-                            <p className="section-text">
+                    <div className="stepsl mtl">
+                        <div className="columnl stepl">
+                            <p className="section-textl">
                             Create an account and login as a user to have access to view voting parameters.
                             </p>
                         </div>
-                        <div className="column step">
-                            <p className="section-text">
+                        <div className="columnl stepl">
+                            <p className="section-textl">
                             Vote any political party of your choice by selecting the party and your favorite candidate
                             </p>
                         </div>
-                        <div className="column step">
-                            <p className="section-text">
+                        <div className="columnl stepl">
+                            <p className="section-textl">
                             You can view the results of the election just by clicking the view result button.
                             </p>
 

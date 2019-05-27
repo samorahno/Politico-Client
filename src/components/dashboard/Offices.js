@@ -17,7 +17,7 @@ const Office = () => {
                 <div className="main">
 
                     <div className="widget widget_table" style={{ overflow: 'auto' }}>
-                        <div className="title heado">Political Parties List</div>
+                        <div className="title heado">Political Offices List</div>
 
                         <div className="widget_stat widget_stat_table">
                             <div style={{ overflow: 'auto' }}>

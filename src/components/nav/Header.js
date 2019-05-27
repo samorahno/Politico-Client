@@ -3,7 +3,7 @@ import '../../styles/landing.scss';
 const Header = () => {
     return (
         <div>
-            <div className="header1">
+            <div className="header1l">
                 <a href="index.html">Politico</a>
             </div>
         </div>

@@ -1,8 +1,12 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import { withRouter } from 'react-router-dom';
 import { loginUser } from '../../actions';
+import ToastMessage from '../common/ToastMessage';
 import '../../styles/landing.scss';
+
 
 class Login extends Component {
     constructor (props) {
@@ -26,6 +30,11 @@ class Login extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    redirectUser () {
+        const { history } = this.props;
+        history.push('/dashboard');
+    }
+
     async onSubmit (e) {
         e.preventDefault();
         const { login } = this.props;
@@ -33,24 +42,38 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         };
-        const res = await login(user);
-        console.log(res);
+        const userResponse = await login(user);
+        if (userResponse.message) {
+            toast(<ToastMessage message="Login Successful. Redirecting....." />, {
+                type: 'success',
+                closeButton: false,
+                onClose: () => this.redirectUser(),
+                hideProgressBar: true,
+                autoClose: 0
+            });
+        } else {
+            toast(<ToastMessage message={userResponse.payload.message} />, {
+                type: 'error',
+                closeButton: false,
+                hideProgressBar: true,
+                autoClose: 5000
+            });
+        }
     }
-
     render () {
         return (
-            <div>
-                <div ref={this.modal} id="myModal" className="modal" style={{ display: this.props.showModal ? 'block' : 'none' }}>
+            <div className="Landing">
+                <div ref={this.modal} id="myModal" className="modall" style={{ display: this.props.showModal ? 'block' : 'none' }}>
 
-                    <div className="modal-content">
-                        <span className="close" onClick={this.closeModal}>&times;</span>
-                        <form className="form-modal dd validate" onSubmit={this.onSubmit}>
+                    <div className="modal-contentl">
+                        <span className="closel" onClick={this.closeModal}>&times;</span>
+                        <form className="form-modall ddl validatel" onSubmit={this.onSubmit}>
                             <h1>Login</h1>
-                            <div className = "success-msg" id = "success-msg-login" />
-                            <div className = "warning-msg" id = "warning-msg-login" />
-                            <div className = "error-msg" id = "error-msg-login" />
-                            <div className = "info-msg" id = "info-msg-login" />
-                            <div className="input-group">
+                            <div className = "success-msgl" id = "success-msg-loginl" />
+                            <div className = "warning-msgl" id = "warning-msg-loginl" />
+                            <div className = "error-msgl" id = "error-msg-loginl" />
+                            <div className = "info-msgl" id = "info-msg-loginl" />
+                            <div className="input-groupl">
                                 <label>Email</label>
                                 <input
                                     type="email"
@@ -61,7 +84,7 @@ class Login extends Component {
                                     onChange = {this.onChange}
                                     required />
                             </div>
-                            <div className="input-group">
+                            <div className="input-groupl">
                                 <label>Password</label>
                                 <input
                                     type = "password"
@@ -76,10 +99,10 @@ class Login extends Component {
                                 />
                             </div>
 
-                            <div className="input-group">
-                                <button type="submit" name="submit" className="btn" id="loginbtn" >Login</button>
+                            <div className="input-groupl">
+                                <button type="submit" name="submit" className="btnl" id="loginbtn" >Login</button>
                                 <a href="sample.html" id="myBtn3">
-                                    <p className="fp">forgot password?</p>
+                                    <p className="fpl">forgot password?</p>
                                 </a>
                             </div>
 
@@ -95,4 +118,8 @@ class Login extends Component {
 const mapDispatchToProps = {
     login: loginUser
 };
-export default connect(null, mapDispatchToProps)(Login);
+
+const mapStateToProps = (state) => ({
+    userData: state.auth
+});
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

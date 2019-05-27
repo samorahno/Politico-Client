@@ -1,6 +1,9 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import { withRouter } from 'react-router-dom';
+import ToastMessage from '../common/ToastMessage';
 import { signupUser } from '../../actions';
 import '../../styles/landing.scss';
 
@@ -23,21 +26,20 @@ class Signup extends Component {
     }
     closeModal (e) {
         document.getElementById('myModal2').style.display = 'none';
-        this.setState({
-            error: ''
-        });
     }
 
     onChange (e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    redirectUser () {
+        const { history } = this.props;
+        history.push('/dashboard');
+    }
+
 
     async onSubmit (e) {
         e.preventDefault();
-        this.setState({
-            error: ''
-        });
         var newUser = {
             firstname: this.state.firstName,
             lastname: this.state.lastName,
@@ -48,28 +50,41 @@ class Signup extends Component {
 
         };
         const { signup } = this.props;
-        const res = await signup(newUser);
-        console.log(res);
+        const isAuthenticated = await signup(newUser);
+        if (!isAuthenticated.payload.status) {
+            toast(<ToastMessage message="Registration Successful. Redirecting....." />, {
+                type: 'success',
+                closeButton: false,
+                onClose: () => this.redirectUser(),
+                hideProgressBar: true,
+                autoClose: 0
+            });
+        } else {
+            toast(<ToastMessage message={isAuthenticated.payload.error || isAuthenticated.payload.message} />, {
+                type: 'error',
+                closeButton: false,
+                hideProgressBar: true,
+                autoClose: 5000
+            });
+        }
     }
     render () {
         const { error } = this.state.error;
         return (
             <div>
-                <div id="myModal2" className="modal" style={{ display: this.props.showModal ? 'block' : 'none' }}>
+                <div id="myModal2" className="modall" style={{ display: this.props.showModal ? 'block' : 'none' }}>
 
-                    <div className="modal-content" id="modalcontent">
-                        <span className="close" onClick = {this.closeModal} >&times;</span>
+                    <div className="modal-contentl" id="modalcontent">
+                        <span className="closel" onClick = {this.closeModal} >&times;</span>
 
-                        {/* <form action="views/userdashboard.html" className="form-modal dd"> */}
-
-                        <form className="form-modal dd" onSubmit={this.onSubmit}>
+                        <form className="form-modall ddl" onSubmit={this.onSubmit}>
                             <h1>Signup</h1>
                             <div className = "success-msg" id = "success-msg" />
                             <div className = "warning-msg" id = "warning-msg" />
                             <div className = "error-msg" id = "error-msg" />
                             <div className = "info-msg" id = "info-msg" />
-                            {error && (<div className="error-msg">{error}</div>)}
-                            <div className="input-group">
+                            {error && (<div className="error-msgl">{error}</div>)}
+                            <div className="input-groupl">
                                 <label>First Name</label>
                                 <input
                                     type="text"
@@ -81,7 +96,7 @@ class Signup extends Component {
                                 />
 
                             </div>
-                            <div className="input-group">
+                            <div className="input-groupl">
                                 <label>Last Name</label>
                                 <input
                                     type="text"
@@ -93,7 +108,7 @@ class Signup extends Component {
                                 />
 
                             </div>
-                            <div className="input-group">
+                            <div className="input-groupl">
                                 <label>E-mail</label>
                                 <input
                                     type="email"
@@ -104,7 +119,7 @@ class Signup extends Component {
                                     onChange={this.onChange}
                                 />
                             </div>
-                            <div className="input-group">
+                            <div className="input-groupl">
                                 <label>Phone Number</label>
                                 <input
                                     type="number"
@@ -116,7 +131,7 @@ class Signup extends Component {
                                 />
                             </div>
                             <label style={{ width: '33%' }}>Password / </label><label style={{ width: '33%' }}>Confirm Password</label>
-                            <div className="input-group">
+                            <div className="input-groupl">
                                 <input
                                     type="password"
                                     name="password"
@@ -136,8 +151,8 @@ class Signup extends Component {
                                     onChange={this.onChange}
                                 />
                             </div>
-                            <div className="input-group">
-                                <button type="submit" name="submit" className="btn" id="signupbtn">Register</button>
+                            <div className="input-groupl">
+                                <button type="submit" name="submit" className="btnl" id="signupbtn">Register</button>
                             </div>
 
                         </form>
@@ -153,4 +168,8 @@ const mapDispatchToProps = {
     signup: signupUser
 };
 
-export default connect(null, mapDispatchToProps)(Signup);
+const mapStateToProps = (state) => ({
+    userData: state.auth
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Signup));
