@@ -35,7 +35,6 @@ export const signupUser = (data) => async (dispatch) => {
         const { user } = response.data.data[0];
         return dispatch(signupSuccess(user, message));
     } catch (error) {
-        console.log(error.response.data);
         return dispatch(authFailure(error.response.data));
     }
 };

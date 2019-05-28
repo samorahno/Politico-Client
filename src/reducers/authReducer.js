@@ -8,17 +8,21 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload,
-                message: action.message
+                message: action.message,
+                isAuthenticated: true
             };
         case AUTH_SIGNUP:
             return {
                 ...state,
                 ...action.payload,
-                message: action.message
+                message: action.message,
+                isAuthenticated: true
             };
         case AUTH_FAILURE:
             return {
-                message: action.message
+                ...state,
+                message: action.payload,
+                isAuthenticated: false
             };
         default:
             return state;
