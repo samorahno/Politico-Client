@@ -505,3 +505,9 @@ button {
 .toast-message {
   text-align: center;
 }
+
+.imageResize {
+	width: 100%;
+	height: 198px;
+	object-fit: cover;
+}

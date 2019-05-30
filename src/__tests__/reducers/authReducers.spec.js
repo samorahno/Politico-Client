@@ -1,5 +1,5 @@
 import { authReducer } from '../../reducers/authReducer';
-import { AUTH_LOGIN, AUTH_SIGNUP, AUTH_FAILURE } from '../../action-types';
+import { AUTH_LOGIN, AUTH_SIGNUP, AUTH_FAILURE, CLEAR_AUTH_ERROR } from '../../action-types';
 
 const userObject = {
     email: 'samabos007@gmail.com',
@@ -45,7 +45,7 @@ describe('Auth reducer', () => {
     });
 });
 
-it('should return LOGIN_USER_BEGIN state for loading state', () => {
+it('should return AUTH_LOGIN state', () => {
     expect(authReducer(undefined, {
         type: AUTH_LOGIN,
         payload
@@ -61,7 +61,7 @@ it('should return LOGIN_USER_BEGIN state for loading state', () => {
     });
 });
 
-it('should return LOGIN_USER_BEGIN state for loading state', () => {
+it('should return AUTH_SIGNUP state for registering new user', () => {
     expect(authReducer(userRegData, {
         type: AUTH_SIGNUP
     })).toEqual({
@@ -106,4 +106,12 @@ it('should return AUTH_FAILURE state for signup state', () => {
     });
 });
 
+it('should return CLEAR_AUTH_ERROR state', () => {
+    expect(authReducer(undefined, {
+        type: CLEAR_AUTH_ERROR,
+        payload
+    })).toEqual({
+        authError: false
+    });
+});
 

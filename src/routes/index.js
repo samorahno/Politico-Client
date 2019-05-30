@@ -15,10 +15,10 @@ import VoteResult from '../components/dashboard/VoteResult';
 
 const Routes = () => (
     <Router>
-        <Route exact path="/dashboard" component={DashboardLanding} />
+        <AuthorizationHoc exact path="/dashboard" component={DashboardLanding} />
         <Route exact path="/office" component={Office} />
         <AuthorizationHoc exact path="/office-admin" component={OfficeAdmin} />
-        <Route exact path="/party-admin" component={PartiesAdmin} />
+        <AuthorizationHoc exact path="/party-admin" component={PartiesAdmin} />
         <Route exact path="/parties" component={Parties} />
         <Route exact path="/candidate" component={CandidateRequest} />
         <Route exact path="/result" component={VoteResult} />
@@ -26,7 +26,6 @@ const Routes = () => (
         <Route exact path="/vote" component={Vote} />
         <Route exact path="/" component={Landing} />
         <Route exact path="/view" component={ViewOffice}/>
-        {/* <Route exact path="/side" component={DashboardSidebar}/> */}
     </Router>
 );
 

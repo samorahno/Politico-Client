@@ -13,7 +13,7 @@ const Sidebar = () => {
             <nav>
                 <ul>
                     <li className="active">
-                        <Link to="/">
+                        <Link to="/dashboard">
                             <span > <i className="fa fa-home fa-fw" /> </span>
                             <span>Home</span>
                         </Link>
