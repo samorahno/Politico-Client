@@ -6,6 +6,12 @@ const userObject = {
     password: '1234567'
 };
 
+const payload = {
+    user: userObject,
+    message: 'good',
+    token: 'undefined'
+};
+
 const userObject2 = {
     email: 'samabos007@gmail.com',
     password: ''
@@ -40,13 +46,18 @@ describe('Auth reducer', () => {
 });
 
 it('should return LOGIN_USER_BEGIN state for loading state', () => {
-    expect(authReducer(userObject, {
-        type: AUTH_LOGIN
+    expect(authReducer(undefined, {
+        type: AUTH_LOGIN,
+        payload
     })).toEqual({
         isAuthenticated: true,
-        message: undefined,
-        email: 'samabos007@gmail.com',
-        password: '1234567'
+        authError: false,
+        message: 'good',
+        token: 'undefined',
+        user: {
+            email: "samabos007@gmail.com",
+            password: "1234567"
+        }
     });
 });
 
@@ -71,6 +82,7 @@ it('should return AUTH_FAILURE state for login state', () => {
         type: AUTH_FAILURE
     })).toEqual({
         isAuthenticated: false,
+        authError: true,
         message: undefined,
         email: 'samabos007@gmail.com',
         password: ''
@@ -82,6 +94,7 @@ it('should return AUTH_FAILURE state for signup state', () => {
         type: AUTH_FAILURE
     })).toEqual({
         isAuthenticated: false,
+        authError: true,
         message: undefined,
         firstname: 'shina',
         lastname: 'bimbo',

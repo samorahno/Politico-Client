@@ -2,7 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/dashboard.css';
 
+
 const Sidebar = () => {
+    const logout = () => {
+        localStorage.clear();
+        window.location.reload();
+    };
     return (
         <div className="side-nav visible" id="togle_nav">
             <nav>
@@ -14,7 +19,7 @@ const Sidebar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/parties">
+                        <Link to="/party-admin">
                             <span > <i className="fa fa-home fa-fw" /> </span>
                             <span>Political Party</span>
                         </Link>
@@ -52,11 +57,9 @@ const Sidebar = () => {
                             <span>View Profile</span>
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/">
-                            <span > <i className="fa fa-power-off" /> </span>
-                            <span>Logout</span>
-                        </Link>
+                    <li style={{ color: '#fff' }}>
+                        <span onClick={logout}> <i className="fa fa-power-off" /> </span>
+                        <span>Logout</span>
                     </li>
 
                 </ul>

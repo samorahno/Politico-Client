@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_SIGNUP, AUTH_FAILURE } from '../action-types';
+import { AUTH_LOGIN, AUTH_SIGNUP, AUTH_FAILURE, CLEAR_AUTH_ERROR } from '../action-types';
 
 const initialState = {};
 
@@ -8,8 +8,9 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload,
-                message: action.message,
-                isAuthenticated: true
+                message: action.payload.message,
+                isAuthenticated: true,
+                authError: false
             };
         case AUTH_SIGNUP:
             return {
@@ -22,7 +23,13 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 message: action.payload,
-                isAuthenticated: false
+                isAuthenticated: false,
+                authError: true
+            };
+        case CLEAR_AUTH_ERROR:
+            return {
+                ...state,
+                authError: false
             };
         default:
             return state;

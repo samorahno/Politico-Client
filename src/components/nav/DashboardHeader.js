@@ -9,7 +9,7 @@ const Header = () => {
 
                 <a href="#"
                     className="minimize_button"
-                    onClick="togle_nav_func()"
+                    // onClick="togle_nav_func()"
                 >
                     <span><i className="fa fa-bars fa-1x" /></span></a>
 	        </header>
