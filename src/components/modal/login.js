@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { withRouter } from 'react-router-dom';
-import { loginUser } from '../../actions';
+import { loginUser, clearAuthError } from '../../actions';
 import ToastMessage from '../common/ToastMessage';
 import '../../styles/landing.scss';
 
@@ -19,6 +19,7 @@ class Login extends Component {
         this.modal = React.createRef();
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.errorHandler = this.errorHandler.bind(this);
     }
 
     closeModal (e) {
@@ -35,32 +36,43 @@ class Login extends Component {
         history.push('/dashboard');
     }
 
-    async onSubmit (e) {
+    errorHandler () {
+        const { clearError } = this.props;
+        clearError();
+    }
+
+
+    onSubmit (e) {
         e.preventDefault();
         const { login } = this.props;
         const user = {
             email: this.state.email,
             password: this.state.password
         };
-        const userResponse = await login(user);
-        if (userResponse.message) {
-            toast(<ToastMessage message="Login Successful. Redirecting....." />, {
-                type: 'success',
-                closeButton: false,
-                onClose: () => this.redirectUser(),
-                hideProgressBar: true,
-                autoClose: 0
-            });
-        } else {
-            toast(<ToastMessage message={userResponse.payload.message} />, {
-                type: 'error',
-                closeButton: false,
-                hideProgressBar: true,
-                autoClose: 5000
-            });
-        }
+        login(user);
     }
     render () {
+        const { userData } = this.props;
+        if (userData) {
+            if (userData.isAuthenticated) {
+                toast(<ToastMessage message="Login Successful. Redirecting....." />, {
+                    type: 'success',
+                    closeButton: false,
+                    onClose: () => this.redirectUser(),
+                    hideProgressBar: true,
+                    autoClose: 0
+                });
+            }
+
+            if (userData.authError) {
+                toast(<ToastMessage message={userData.message.message} />, {
+                    type: 'error',
+                    closeButton: false,
+                    hideProgressBar: true,
+                    autoClose: 5000
+                });
+            }
+        }
         return (
             <div className="Landing">
                 <div ref={this.modal} id="myModal" className="modall" style={{ display: this.props.showModal ? 'block' : 'none' }}>
@@ -82,6 +94,7 @@ class Login extends Component {
                                     id="loginemail"
                                     value = {this.state.email}
                                     onChange = {this.onChange}
+                                    onFocus = {this.errorHandler}
                                     required />
                             </div>
                             <div className="input-groupl">
@@ -95,6 +108,7 @@ class Login extends Component {
                                     maxLength="50"
                                     value = {this.state.password}
                                     onChange = {this.onChange}
+                                    onFocus = {this.errorHandler}
                                     required
                                 />
                             </div>
@@ -116,7 +130,8 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = {
-    login: loginUser
+    login: loginUser,
+    clearError: clearAuthError
 };
 
 const mapStateToProps = (state) => ({

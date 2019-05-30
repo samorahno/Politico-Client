@@ -2,13 +2,29 @@ import { loginSucess,
     authFailure,
     signupSuccess,
     loginUser,
-    signupUser
+    signupUser,
+    clearAuthError
 } from './authActions';
+import {
+    createOfficeSuccess,
+    createOfficeFailure,
+    getOfficeSuccess,
+    getOfficeFailure,
+    createOffice,
+    getOffice
+} from './officeActions';
 
 export {
     loginSucess,
     authFailure,
     signupSuccess,
     loginUser,
-    signupUser
+    signupUser,
+    clearAuthError,
+    createOfficeSuccess,
+    createOfficeFailure,
+    getOfficeSuccess,
+    getOfficeFailure,
+    createOffice,
+    getOffice
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import Header from '../components/nav/Header';
-// import Footer from '../components/nav/Footer';
+import AuthorizationHoc from '../components/AuthorizationHoc';
 import Landing from '../components/landing/landing';
 import ViewOffice from '../components/dashboard/viewoffice';
 import DashboardLanding from '../components/dashboard/DashboardLanding';
@@ -18,7 +17,7 @@ const Routes = () => (
     <Router>
         <Route exact path="/dashboard" component={DashboardLanding} />
         <Route exact path="/office" component={Office} />
-        <Route exact path="/office-admin" component={OfficeAdmin} />
+        <AuthorizationHoc exact path="/office-admin" component={OfficeAdmin} />
         <Route exact path="/party-admin" component={PartiesAdmin} />
         <Route exact path="/parties" component={Parties} />
         <Route exact path="/candidate" component={CandidateRequest} />
