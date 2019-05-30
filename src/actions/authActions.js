@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_SIGNUP, AUTH_FAILURE, CLEAR_AUTH_ERROR } from '../action-types';
+import { AUTH_LOGIN, AUTH_SIGNUP, AUTH_FAILURE, CLEAR_AUTH_ERROR, AUTH_LOGOUT } from '../action-types';
 import axios from '../config/axiosConfig';
 
 export const loginSucess = (user, message, token) => ({
@@ -15,6 +15,10 @@ export const signupSuccess = (payload = {}, message = '') => ({
     type: AUTH_SIGNUP,
     payload,
     message
+});
+
+export const logoutSuccess = () => ({
+    type: AUTH_LOGOUT
 });
 
 export const clearAuthError = () => ({
@@ -40,4 +44,9 @@ export const signupUser = (data) => async (dispatch) => {
     } catch (error) {
         return dispatch(authFailure(error.response.data));
     }
+};
+
+export const logoutUser = () => async (dispatch) => {
+    dispatch(logoutSuccess());
+    localStorage.removeItem('state');
 };

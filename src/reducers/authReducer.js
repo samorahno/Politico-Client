@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_SIGNUP, AUTH_FAILURE, CLEAR_AUTH_ERROR } from '../action-types';
+import { AUTH_LOGIN, AUTH_SIGNUP, AUTH_FAILURE, CLEAR_AUTH_ERROR, AUTH_LOGOUT } from '../action-types';
 
 const initialState = {};
 
@@ -30,6 +30,11 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 authError: false
+            };
+        case AUTH_LOGOUT:
+            return {
+                ...initialState,
+                isAuthenticated: false
             };
         default:
             return state;

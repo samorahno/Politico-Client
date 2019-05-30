@@ -23,7 +23,7 @@ const Routes = () => (
         <Route exact path="/candidate" component={CandidateRequest} />
         <Route exact path="/result" component={VoteResult} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/vote" component={Vote} />
+        <AuthorizationHoc exact path="/vote" component={Vote} />
         <Route exact path="/" component={Landing} />
         <Route exact path="/view" component={ViewOffice}/>
     </Router>

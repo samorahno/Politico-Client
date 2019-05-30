@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import '../../styles/dashboard.css';
+import { logoutUser } from '../../actions';
 
-
-const Sidebar = () => {
-    const logout = () => {
-        localStorage.clear();
-        window.location.reload();
+const Sidebar = (props) => {
+    const { logout, history } = props;
+    const logoutSuccess = () => {
+        logout();
+        history.push('/');
     };
     return (
         <div className="side-nav visible" id="togle_nav">
@@ -57,8 +59,8 @@ const Sidebar = () => {
                             <span>View Profile</span>
                         </Link>
                     </li>
-                    <li style={{ color: '#fff' }}>
-                        <span onClick={logout}> <i className="fa fa-power-off" /> </span>
+                    <li style={{ color: '#fff', cursor: 'pointer' }} onClick={logoutSuccess}>
+                        <span> <i className="fa fa-power-off" /> </span>
                         <span>Logout</span>
                     </li>
 
@@ -68,4 +70,8 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+const mapDispatchToProps = ({
+    logout: logoutUser
+});
+
+export default withRouter(connect(null, mapDispatchToProps)(Sidebar));

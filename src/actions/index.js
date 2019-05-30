@@ -3,7 +3,8 @@ import { loginSucess,
     signupSuccess,
     loginUser,
     signupUser,
-    clearAuthError
+    clearAuthError,
+    logoutUser
 } from './authActions';
 import {
     createOfficeSuccess,
@@ -27,6 +28,7 @@ export {
     authFailure,
     signupSuccess,
     loginUser,
+    logoutUser,
     signupUser,
     clearAuthError,
     createOfficeSuccess,
