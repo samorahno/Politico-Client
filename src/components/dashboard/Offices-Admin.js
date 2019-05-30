@@ -17,7 +17,6 @@ class OfficeAdmin extends Component {
             officename: '',
             type: ''
         };
-        this.modal = React.createRef();
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -26,36 +25,41 @@ class OfficeAdmin extends Component {
         const { listOffices } = this.props;
         listOffices();
     }
+
+    componentDidUpdate (prevProps) {
+        const { createOfficeError, status, errorMessage } = this.props;
+        if (prevProps.createOfficeError !== createOfficeError) {
+            if (status >= 400) {
+                toast(<ToastMessage message={errorMessage} />, {
+                    type: 'error',
+                    closeButton: false,
+                    hideProgressBar: true,
+                    autoClose: 5000
+                });
+            }
+            if (!createOfficeError) {
+                toast(<ToastMessage message="Office successfully created" />, {
+                    type: 'success',
+                    closeButton: false,
+                    hideProgressBar: true,
+                    autoClose: 0
+                });
+            }
+        }
+    }
     onChange (e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
     onSubmit (e) {
         e.preventDefault();
-        const { createNewOffice, createOfficeError, status, errorMessage } = this.props;
+        const { createNewOffice } = this.props;
         const officeData = {
             name: this.state.officename,
             type: this.state.type
         };
 
         createNewOffice(officeData);
-        if (createOfficeError && status >= 400) {
-            toast(<ToastMessage message={errorMessage} />, {
-                type: 'error',
-                closeButton: false,
-                hideProgressBar: true,
-                autoClose: 5000
-            });
-        }
-
-        if (!createOfficeError && status === 200) {
-            toast(<ToastMessage message="Office successfully created" />, {
-                type: 'success',
-                closeButton: false,
-                hideProgressBar: true,
-                autoClose: 0
-            });
-        }
     }
 
     render () {
@@ -91,11 +95,12 @@ class OfficeAdmin extends Component {
                                                     id="officeName"
                                                     onChange={this.onChange}
                                                     value={this.state.officename}
+                                                    required
                                                 />
                                             </div>
                                             <div className="input-group">
                                                 <label>Office Type</label>
-                                                <select id="officeType" name="type" onChange={this.onChange} value={this.state.value}>
+                                                <select id="officeType" required name="type" onChange={this.onChange} value={this.state.value}>
                                                     <option value="">Select office type</option>
                                                     <option value="federal">Federal Government</option>
                                                     <option value="legislative">Legislative Government</option>
