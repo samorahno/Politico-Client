@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../../styles/dashboard.css';
 import { logoutUser } from '../../actions';
@@ -14,50 +14,53 @@ const Sidebar = (props) => {
         <div className="side-nav visible" id="togle_nav">
             <nav>
                 <ul>
-                    <li className="active">
-                        <Link to="/dashboard">
+                    <li>
+                        <NavLink
+                            to="/dashboard"
+                            activeClassName="active"
+                        >
                             <span > <i className="fa fa-home fa-fw" /> </span>
                             <span>Home</span>
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to="/party-admin">
+                        <NavLink to="/party">
                             <span > <i className="fa fa-home fa-fw" /> </span>
                             <span>Political Party</span>
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to="/office-admin">
+                        <NavLink to="/office">
                             <span > <i className="fa fa-compress" /> </span>
                             <span>Political Office</span>
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to="/candidate">
+                        <NavLink to="/candidate">
                             <span > <i className="fa fa-pencil-square" /> </span>
                             <span>Candidate</span>
-                        </Link>
+                        </NavLink>
                     </li>
 
                     <li>
-                        <Link to="/vote">
+                        <NavLink to="/vote">
                             <span > <i className="fa fa-envelope" /> </span>
                             <span>Vote</span>
-                        </Link>
+                        </NavLink>
                     </li>
 
                     <li>
-                        <Link to="/result">
+                        <NavLink to="/result">
                             <span > <i className="fa fa-envelope" /> </span>
                             <span>Vote Result</span>
-                        </Link>
+                        </NavLink>
                     </li>
 
                     <li>
-                        <Link to="/profile">
+                        <NavLink to="/profile">
                             <span > <i className="fa fa-pencil" /> </span>
                             <span>View Profile</span>
-                        </Link>
+                        </NavLink>
                     </li>
                     <li style={{ color: '#fff', cursor: 'pointer' }} onClick={logoutSuccess}>
                         <span> <i className="fa fa-power-off" /> </span>

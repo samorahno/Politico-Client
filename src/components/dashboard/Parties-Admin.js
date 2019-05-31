@@ -9,6 +9,7 @@ import SideBar from '../nav/DashboardSidebar';
 import ToastMessage from '../common/ToastMessage';
 import PartyCard from '../common/partiesCard';
 import apcLogo from '../../images/apclogo.jpg';
+import uploadToCloudinary from '../../config/uploadToCloudinary';
 
 
 class PartiesAdmin extends Component {
@@ -18,6 +19,7 @@ class PartiesAdmin extends Component {
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.imageUploadHandler = this.imageUploadHandler.bind(this);
     }
     componentDidMount () {
         const { listParties } = this.props;
@@ -48,6 +50,16 @@ class PartiesAdmin extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    async imageUploadHandler (e) {
+        const form = new FormData();
+        const imageData = e.target.files[0];
+        if (imageData) {
+            form.append('file', imageData);
+            const res = await uploadToCloudinary(form);
+            this.setState({ partyLogo: res.url });
+        }
+    }
+
     onSubmit (e) {
         e.preventDefault();
         const { createNewParty } = this.props;
@@ -57,7 +69,6 @@ class PartiesAdmin extends Component {
             hqAddress: this.state.partyaddress,
             logoUrl: this.state.partyLogo
         };
-
         createNewParty(partyData);
     }
     render () {
@@ -123,13 +134,12 @@ class PartiesAdmin extends Component {
                                             <div className="input-group">
                                                 <label>Party Logo</label>
                                                 <input
-                                                    type="text"
+                                                    type="file"
                                                     name="partyLogo"
                                                     placeholder="https://imagelogourl.com/image.jpg"
                                                     accept="image/gif, image/png, image/jpeg"
                                                     id="partyLogo"
-                                                    onChange={this.onChange}
-                                                    value={this.state.partyLogo}
+                                                    onChange={this.imageUploadHandler}
                                                 />
                                             </div>
 

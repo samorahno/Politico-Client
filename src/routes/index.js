@@ -16,9 +16,9 @@ import VoteResult from '../components/dashboard/VoteResult';
 const Routes = () => (
     <Router>
         <AuthorizationHoc exact path="/dashboard" component={DashboardLanding} />
-        <Route exact path="/office" component={Office} />
-        <AuthorizationHoc exact path="/office-admin" component={OfficeAdmin} />
-        <AuthorizationHoc exact path="/party-admin" component={PartiesAdmin} />
+        <Route exact path="/offices" component={Office} />
+        <AuthorizationHoc exact path="/office" component={OfficeAdmin} />
+        <AuthorizationHoc exact path="/party" component={PartiesAdmin} />
         <Route exact path="/parties" component={Parties} />
         <Route exact path="/candidate" component={CandidateRequest} />
         <Route exact path="/result" component={VoteResult} />
