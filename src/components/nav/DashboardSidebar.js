@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import '../../styles/dashboard.css';
 import { logoutUser } from '../../actions';
 
-const Sidebar = (props) => {
+export const Sidebar = (props) => {
     const { logout, history } = props;
     const logoutSuccess = () => {
         logout();

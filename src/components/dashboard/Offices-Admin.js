@@ -10,7 +10,7 @@ import ToastMessage from '../common/ToastMessage';
 import ListOffices from '../../components/common/ListOffices';
 
 
-class OfficeAdmin extends Component {
+export class OfficeAdmin extends Component {
     constructor (props) {
         super(props);
         this.state = {

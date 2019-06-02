@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PartyCard = ({ image, name, alias, address }) => {
+export const PartyCard = ({ image, name, alias, address }) => {
     return (
         <article className="card">
             <img src={image} alt="Party Photo" className="imageResize"/>

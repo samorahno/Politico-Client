@@ -12,7 +12,7 @@ import apcLogo from '../../images/apclogo.jpg';
 import uploadToCloudinary from '../../config/uploadToCloudinary';
 
 
-class PartiesAdmin extends Component {
+export class PartiesAdmin extends Component {
     constructor (props) {
         super(props);
         this.state = {

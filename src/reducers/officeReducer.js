@@ -6,7 +6,8 @@ export const officeReducer = (state = initialState, action) => {
         case CREATE_OFFICE_SUCCESS:
             return {
                 ...state,
-                office: state.office.concat([action.payload]),
+                office: state.office.concat(action.payload),
+                // office: [...state.office, ...action.payload],
                 message: action.message,
                 createOfficeError: false
             };

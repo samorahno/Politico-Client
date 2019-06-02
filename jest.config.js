@@ -32,5 +32,5 @@ module.exports = {
         '^.+\\.(jpg|png|svg)$': 'babel-jest'
     },
     coverageReporters: ['json', 'html', 'lcov'],
-    modulePathIgnorePatterns: ['src/index.js', 'src/App.js', 'src/reducers/index.js', 'src/components/index.js']
+    modulePathIgnorePatterns: ['src/index.js', 'src/App.js', 'src/reducers/index.js', 'src/components/index.js', 'src/store/']
 };

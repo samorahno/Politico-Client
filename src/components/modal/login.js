@@ -8,7 +8,7 @@ import ToastMessage from '../common/ToastMessage';
 import '../../styles/landing.scss';
 
 
-class Login extends Component {
+export class Login extends Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -134,7 +134,7 @@ const mapDispatchToProps = {
     clearError: clearAuthError
 };
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
     userData: state.auth
 });
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

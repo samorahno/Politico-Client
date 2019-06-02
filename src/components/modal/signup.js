@@ -8,7 +8,7 @@ import { signupUser } from '../../actions';
 import '../../styles/landing.scss';
 
 // const baseUrlSignup = 'https://samson-politico.herokuapp.com/api/v1/';
-class Signup extends Component {
+export class Signup extends Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -168,7 +168,7 @@ const mapDispatchToProps = {
     signup: signupUser
 };
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
     userData: state.auth
 });
 

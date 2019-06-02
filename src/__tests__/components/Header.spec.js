@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import Header from '../../components/nav/Footer';
 
 describe('Header', () => {
-    it('should render correctly in "debug" mode', () => {
-        const component = shallow(<Header debug/>);
+    it('should render header component correctly', () => {
+        const component = shallow(<Header />);
         expect(component).toMatchSnapshot();
     });
 });

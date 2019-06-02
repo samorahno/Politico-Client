@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parties Component should render Part component correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Parties Component should simulate change event on abbreviation textbox 1`] = `ShallowWrapper {}`;
+
+exports[`Parties Component should simulate change event on address textbox 1`] = `ShallowWrapper {}`;
+
+exports[`Parties Component should simulate change event on image link textbox 1`] = `ShallowWrapper {}`;
+
+exports[`Parties Component should simulate change event on partyname textbox 1`] = `ShallowWrapper {}`;
+
+exports[`Parties Component should simulate form submission 1`] = `ShallowWrapper {}`;

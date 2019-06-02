@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header  1`] = `ShallowWrapper {}`;
+
+exports[`Header should render OfficeAdmin component correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Header should simulate onchange event for office type drop down menu 1`] = `ShallowWrapper {}`;
