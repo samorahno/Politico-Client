@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Signup Component  1`] = `ShallowWrapper {}`;
+
+exports[`Signup Component should render Signup component correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Signup Component should return onchange for firstname 1`] = `ShallowWrapper {}`;
+
+exports[`Signup Component should return onchange for lastname 1`] = `ShallowWrapper {}`;

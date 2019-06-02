@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import axios from '../config/axiosConfig';
 
 
-const AuthorizationHOC = ({ component: Component, ...rest }) => {
+export const AuthorizationHOC = ({ component: Component, ...rest }) => {
     const token = rest.auth ? rest.auth.token : null;
     const isAdmin = rest.auth.user ? rest.auth.user.isAdmin : null;
     return (

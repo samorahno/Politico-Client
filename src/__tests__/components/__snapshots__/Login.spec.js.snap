@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header  1`] = `ShallowWrapper {}`;
+
+exports[`Header should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
+
+exports[`Header should return onchange for email 1`] = `ShallowWrapper {}`;
+
+exports[`Header should return onchange for password 1`] = `ShallowWrapper {}`;
